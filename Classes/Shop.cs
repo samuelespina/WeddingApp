@@ -13,6 +13,8 @@ public class Shop
 
     public string ShopName { get => _shopName; }
 
+    public Dictionary<Newlyweds, Dictionary<string, GiftList>> WeddingList { get => _weddingList; }
+
     public Shop(string shopName)
     {
         _weddingList = new Dictionary<Newlyweds, Dictionary<string, GiftList>>();

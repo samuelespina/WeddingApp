@@ -14,6 +14,14 @@ public class User : IBuy
 
     private List<Gift> _bougthGifts = new List<Gift>();
 
+    public uint Id { get => _id; }
+
+    public string Name { get => _name; }
+
+    public string surname { get => _surname; }
+
+    public double Total { get => _total; }
+    
     public User(uint id, string name, string surname)
     {
         _id = id;

@@ -15,6 +15,8 @@ public class Gift
 
     public string Name { get => _name; }
 
+    public int Id { get => _id; }
+
     public Gift(int id, string name, string description, double price)
     {
 

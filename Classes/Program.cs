@@ -9,9 +9,9 @@ public class Program {
 
         Newlyweds newlyweds = new Newlyweds(1, new User(1, "Michele", "Malgeri"), new User(2, "Vincenza", "Carchiolo"));
 
-        Client client = new Client(newlyweds, shop);
+        Client clientNewlyweds = new Client(shop, newlyweds);
         newlyweds.PrintAllGiftLists();
 
-        Client client = new(shop, new(14, "Davide", "Brancato"));
+        Client clientUser = new(shop, new User(14, "Davide", "Brancato"));
     }
 }

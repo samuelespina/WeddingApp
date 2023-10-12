@@ -153,7 +153,7 @@ public class Client
                 }
         }
 
-        _newlyweds.AddNewlyWedsList(_newlyweds, nameList, _newlyweds._newlyWedsLists, _shop);
+        _newlyweds.AddNewlyWedsList(_newlyweds, nameList, _newlyweds.NewlyWedsLists, _shop);
         Console.WriteLine();
         Console.WriteLine("THE WEDDING LIST IS SUCCESSFULLY SAVED!");
         Console.WriteLine();
@@ -164,7 +164,7 @@ public class Client
 
         string? nameList = NameTheList();
 
-        if(_shop._weddingList.ContainsKey(_newlyweds) && _shop._weddingList[_newlyweds].ContainsKey(nameList)){
+        if(_shop.WeddingList.ContainsKey(_newlyweds) && _shop.WeddingList[_newlyweds].ContainsKey(nameList)){
 
             bool keepAddGift = true;
 
