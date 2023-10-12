@@ -8,6 +8,9 @@ public class Client
 
     private Gift _gift;
 
+    
+/*------------------- User - shop -------------------*/
+
     private Newlyweds? SelectNewlyweds()
     {
         _shop.ShowNewlyWeds();
