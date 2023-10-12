@@ -12,6 +12,6 @@ public class Program {
         Client clientNewlyweds = new Client(shop, newlyweds);
         newlyweds.PrintAllGiftLists();
 
-        Client clientUser = new(shop, new User(14, "Davide", "Brancato"));
+        Client clientUser = new(shop, new User(14, "Mario", "Rossi"));
     }
 }
