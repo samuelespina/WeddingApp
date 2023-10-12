@@ -20,6 +20,45 @@ public class Shop
         _shopName = shopName;
     }
 
+
+
+    public void ShowShopGifts(){
+        for(int i = 0; i < _shopGifts.Count; i++){
+            Console.Write((i+1) +  " ");
+            Console.Write(_shopGifts[i].ToString());
+            Console.WriteLine();
+            Console.WriteLine();
+        }
+    }
+
+    public Gift TakeGift(int index){
+        Gift selectedGift = _shopGifts[index-1];
+        _shopGifts.RemoveAt(index-1);
+        return selectedGift;
+    }
+
+    public void AddNewlyWedsList(Newlyweds newlyweds, string nameList, Dictionary<string, GiftList> weddinglist){//6
+
+        _weddingList[newlyweds] = weddinglist;
+    }
+
+    public void ShowAll(){
+        foreach(var newlyweds in _weddingList){
+            Console.WriteLine(newlyweds.Key);
+            foreach(var nameList in newlyweds.Value){
+                Console.WriteLine("   " + newlyweds.Key);
+                foreach(var gift in nameList.Key){
+                    Console.WriteLine("      " + gift.ToString());
+                }
+            }
+            Console.WriteLine("");
+        }
+    }
+
+
+
+
+
     public void ShowNewlyWeds()
     {
         foreach (var newlyweds in _newlyweds)
@@ -72,5 +111,5 @@ public class Shop
 
     public void InsertIntoInventory(Gift gift) { _shopGifts.Add(gift); }
 
-    public void InsertIntoNewlyweds(Newlyweds newlyweds) { _newlyweds.Add(newlyweds.ID, newlyweds); }
+    public void InsertIntoNewlyweds(Newlyweds newlyweds) { _newlyweds.Add(newlyweds.Id, newlyweds); }
 }

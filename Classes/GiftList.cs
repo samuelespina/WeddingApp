@@ -9,6 +9,10 @@ public class GiftList
         _giftList = new Dictionary<string, Gift>();
     }
 
+    public void AddGift(string ProductName, Gift gift){
+        _giftList.Add(ProductName, gift);
+    }
+
     public void ShowList()
     {
         foreach (var giftName in _giftList)

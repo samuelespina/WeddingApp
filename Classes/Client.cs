@@ -6,6 +6,8 @@ public class Client
 
     private Newlyweds _newlyweds;
 
+    private Gift _gift;
+
     private Newlyweds? SelectNewlyweds()
     {
         _shop.ShowNewlyWeds();
@@ -20,7 +22,7 @@ public class Client
         catch (NewlyWedsNotFoundException e)
         {
             Console.WriteLine(e.Message);
-            //come faccio a ciclare di nuovo per reinsirire un altro valore? 
+            
         }
         catch (Exception)
         {
@@ -50,7 +52,6 @@ public class Client
         catch (GiftListNotFoundException e)
         {
             Console.WriteLine(e.Message);
-            //come faccio a ciclare di nuovo per reinsirire un altro valore? 
         }
         catch (Exception)
         {
@@ -74,7 +75,7 @@ public class Client
         catch (GiftNotFoundException e)
         {
             Console.WriteLine(e.Message);
-            //come faccio a ciclare di nuovo per reinsirire un altro valore? 
+            
         }
         catch (Exception)
         {
@@ -83,11 +84,141 @@ public class Client
         return null;
     }
 
+
+
+
+/*------------------- newlyweds - shop -------------------*/
+
+
+
+
+
+    private string NameTheList(){
+        
+        Console.WriteLine("Chose the name of your list : ");
+        return Console.ReadLine();
+    }
+
+    private int ChoseGift(){
+
+        Console.WriteLine("Enter the number of the gift to add it in your list : ");
+        return Convert.ToInt32(Console.ReadLine());
+    }
+
+    private void CreateNewWeddingList(){
+
+        string? nameList = NameTheList();
+        if(nameList == null){
+            return;
+        }else{
+            _newlyweds.CreateList(nameList);
+        }
+       
+       bool keepAddGift = true;
+
+        while(keepAddGift){
+            
+                Console.WriteLine();
+                Console.WriteLine("ADD NEW GIFTS IN YOUR LIST");
+                Console.WriteLine();
+                Console.WriteLine("These are the gifts that can be bought :");
+                Console.WriteLine();
+                Console.WriteLine();
+                _shop.ShowShopGifts();
+                
+                try{
+
+                    int indexGift = ChoseGift();
+                    _gift = _shop.TakeGift(indexGift);
+
+                    _newlyweds.AddGift(nameList, _gift.Name, _gift);
+                    Console.WriteLine();
+                    Console.WriteLine("SELECTED GIFT SUCCESSFULLY ADDED IN YOUR WEDDING LIST");
+                    Console.WriteLine();
+
+                    Console.WriteLine("Do you wanna add an other gift in your wedding list? y/n");
+                    switch(Console.ReadLine()){
+                        case "y":
+                        Console.WriteLine();
+                            break;
+                        default:
+                            keepAddGift = false;
+                            break;
+                    }
+
+                }catch(Exception){
+                    Console.WriteLine();
+                    Console.WriteLine("Invalid input");
+                    Console.WriteLine();
+                }
+        }
+
+        _newlyweds.AddNewlyWedsList(_newlyweds, nameList, _newlyweds._newlyWedsLists, _shop);
+        Console.WriteLine();
+        Console.WriteLine("THE WEDDING LIST IS SUCCESSFULLY SAVED!");
+        Console.WriteLine();
+
+    }
+
+    private void AddGiftToExistingList(){
+
+        string? nameList = NameTheList();
+
+        if(_shop._weddingList.ContainsKey(_newlyweds) && _shop._weddingList[_newlyweds].ContainsKey(nameList)){
+
+            bool keepAddGift = true;
+
+            while(keepAddGift){
+                Console.WriteLine();
+                Console.WriteLine("ADD NEW GIFTS IN YOUR LIST");
+                Console.WriteLine();
+                Console.WriteLine("These are the gifts that can be bought :");
+                Console.WriteLine();
+                Console.WriteLine();
+                _shop.ShowShopGifts();
+                
+                try{
+
+                    int indexGift = ChoseGift();
+                    _gift = _shop.TakeGift(indexGift);
+                    Console.WriteLine();
+                    _newlyweds.AddGift(nameList, _gift.Name, _gift);
+                    Console.WriteLine("SELECTED GIFT SUCCESSFULLY ADDED IN YOUR WEDDING LIST");
+                    Console.WriteLine();
+                    Console.WriteLine("Do you wanna add an other gift in your wedding list? y/n");
+                    switch(Console.ReadLine()){
+                        case "y":
+                        Console.WriteLine();
+                            break;
+                        default:
+                            keepAddGift = false;
+                            break;
+                    }
+
+                }catch(Exception){
+                    Console.WriteLine("Invalid input");
+                }
+        }
+
+        }
+        else{
+            Console.WriteLine("There is not a wedding list called " + nameList);
+        }
+    }
+
+
+
     public Client(Shop shop, User user)
     {
         _user = user;
         _shop = shop;
         UserMenu();
+    }
+
+     public Client(Shop shop, Newlyweds newlyweds){
+        _newlyweds = newlyweds;
+        _shop = shop;
+        NewlywedsMenu();
     }
     
     public void UserMenu()
@@ -125,6 +256,38 @@ public class Client
         catch (Exception)
         {
             Console.WriteLine("ERROR");
+        }
+    }
+
+    public void NewlywedsMenu(){
+        
+        bool keepModifyWeddingList = true;
+
+        while(keepModifyWeddingList){
+
+            Console.WriteLine("Press '0' to create a new list, '1' to add gifts to an already existing list, 'z' to exit");
+            switch(Console.ReadLine()){
+
+            case "0":
+            Console.WriteLine();
+            CreateNewWeddingList();
+                break;
+
+            case "1":
+            Console.WriteLine();
+            AddGiftToExistingList();
+                break;
+
+            case "z":
+                Console.WriteLine();
+                keepModifyWeddingList = false;
+                break;
+
+            default:
+                Console.WriteLine("Invalid input");
+                Console.WriteLine();
+                break;
+            }
         }
     }
 

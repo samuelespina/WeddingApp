@@ -6,17 +6,53 @@ public class Newlyweds
     private User _wife;
     private User _husband;
 
-    public ushort ID { get => _id; }
+    public ushort Id { get => _id; }
 
-    public Newlyweds(ushort id, User husband, User wife)
-    {
+    public Newlyweds(ushort id, User wife, User husband) {
         _id = id;
         _husband = husband;
         _wife = wife;
+        _newlyWedsLists = new Dictionary<string, GiftList>();
     }
 
-    public override string ToString()
-    {
-        return $"{_id}=> {_husband} - {_wife}";
+    public void CreateList(string namelist){
+       if (!_newlyWedsLists.ContainsKey(namelist))
+        {
+        _newlyWedsLists[namelist] = new GiftList();
+        }else{
+            Console.WriteLine("The list already exist!");
+        }
     }
+
+    public void AddGift(string nameList, string ProductName ,Gift gift){
+        _newlyWedsLists[nameList].AddGift(gift.Name, gift);
+    }    
+
+    public void AddNewlyWedsList(Newlyweds newlyweds, string nameList, Dictionary<string, GiftList> weddinglist, Shop shop){//5
+
+        shop.AddNewlyWedsList(newlyweds, nameList, weddinglist);
+
+    }
+
+    public void PrintAllGiftLists(){
+    Console.WriteLine();
+    Console.WriteLine();
+    Console.WriteLine();
+    Console.WriteLine("These are the gifts on your wedding list :");
+    Console.WriteLine();
+
+        foreach (var nameList in _newlyWedsLists)
+        {
+            Console.WriteLine("WEDDING LIST NAME : " + nameList.Key);
+            Console.WriteLine();
+            Console.WriteLine("GIFT IN YOUR WEDDING LIST:");
+
+            foreach (var giftEntry in nameList.Value._giftList)
+            {
+                Console.WriteLine("Product: " + giftEntry.Value.ToString());
+                Console.WriteLine();
+            }
+        }
+    }
+
 }
