@@ -1,6 +1,6 @@
 using System;
 
-public class Newlyweds
+public class Newlyweds : IAddList
 {
     private ushort _id;
     private User _wife;
