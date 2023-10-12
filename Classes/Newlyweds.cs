@@ -70,4 +70,9 @@ public class Newlyweds : IAddList
         }
     }
 
+    public override string ToString()
+    {
+        return $"{_id}=> {_husband} - {_wife}";
+    }
+
 }

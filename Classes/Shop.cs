@@ -42,6 +42,7 @@ public class Shop
     public void AddNewlyWedsList(Newlyweds newlyweds, string nameList, Dictionary<string, GiftList> weddinglist){//6
 
         _weddingList[newlyweds] = weddinglist;
+        _newlyweds[newlyweds.Id] = newlyweds;
     }
 
     public void ShowAll(){
