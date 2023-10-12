@@ -2,9 +2,12 @@
 
 ## Tasks
 <ul>
-    <li> User / Shop interation ###Done by Davide Brancato </li>
-    <li> Newlyweds / Shop interation ###Done by Samuele Spina </li>
-    <li> User / Client / Shop interation ###Done by Davide Brancato</li>
-    <li> Newlyweds / Client / Shop interation ###Done by Samuele Spina</li>
-    <li> File interation ###Done by Davide Brancato</li>
+    <h3> Davide Brancato </h3>
+    <li> User / Shop interation </li>
+    <li> User / Client / Shop interation</li>
+    <li> Json file interation</li>
+    <h3> Samuele Spina </h3>
+    <li> Newlyweds / Shop interation</li>
+    <li> Newlyweds / Client / Shop interation</li>
+   
 </ul>
